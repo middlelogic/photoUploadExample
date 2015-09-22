@@ -21,3 +21,6 @@ insecure                # Allow all DB writes from clients (for prototyping)
 cfs:standard-packages
 cfs:filesystem
 cfs:graphicsmagick
+semantic:ui
+flemay:less-autoprefixer
+semantic:ui-css
