@@ -2,7 +2,7 @@ if (Meteor.isClient) {
 
   Meteor.startup(function () {
     // Filter Defaults
-    var defaultFilter = "Both";
+    var defaultFilter = "Male";
     Session.set('genderFilter', defaultFilter);
     $('input:radio[value="' + defaultFilter + '"]').attr('checked', 'checked');
 
