@@ -1,5 +1,13 @@
 if (Meteor.isClient) {
 
+  Meteor.startup(function () {
+    // Filter Defaults
+    var defaultFilter = "Both";
+    Session.set('genderFilter', defaultFilter);
+    $('input:radio[value="' + defaultFilter + '"]').attr('checked', 'checked');
+
+  });
+
   Template.cardLayout.events({
     'change #genderSelect': function(event, template) {
       var gender = template.find('#genderSelect').value;
@@ -18,6 +26,9 @@ if (Meteor.isClient) {
           }
         });
       });
+    },
+    'change input:radio[name=genderFilter]': function (event) {
+      Session.set('genderFilter', event.target.value);
     }
   });
 
@@ -25,25 +36,37 @@ if (Meteor.isClient) {
     photoCount: function () {
       return Photos.find().count();
     },
-    isUploading: function () {
-      return false;
+    genderFilter: function() {
+      return Session.get('genderFilter');
     }
   })
 
   Template.cardLayout.rendered = function() {
     // Semantic UI Dropdown
     $('select.dropdown').dropdown();
+    // Semantic UI Radio Buttons
+    $('.ui.radio.checkbox').checkbox();
   };
 
   Template.photoGrid.helpers({
     photos: function () {
-      return Photos.find();
+      switch(Session.get('genderFilter')) {
+        case 'Both'   : return Photos.find(); break;
+        case 'Male'   : return Photos.find({ 'metadata.gender': 'Male' }); break;
+        case 'Female' : return Photos.find({ 'metadata.gender': 'Female' }); break;
+        default       : return Photos.find(); break;
+      }
     }
   });
 
   Template.owlCarousel.helpers({
     photos: function () {
-      return Photos.find();
+      switch(Session.get('genderFilter')) {
+        case 'Both'   : return Photos.find(); break;
+        case 'Male'   : return Photos.find({ 'metadata.gender': 'Male' }); break;
+        case 'Female' : return Photos.find({ 'metadata.gender': 'Female' }); break;
+        default       : return Photos.find(); break;
+      }
     }
   });
 

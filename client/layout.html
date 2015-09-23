@@ -54,6 +54,34 @@
     </div>
 
     <div class="content">
+      <div class="meta" style="padding-bottom: 6px;">
+        Filter by Gender: {{genderFilter}}
+      </div>
+      <div class="ui form">
+        <div class="inline fields">
+          <div class="field">
+            <div class="ui radio checkbox">
+              <input type="radio" name="genderFilter" value="Both" tabindex="0" class="hidden">
+              <label>Both</label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui radio checkbox">
+              <input type="radio" name="genderFilter" value="Male" tabindex="0" class="hidden">
+              <label>Male</label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui radio checkbox">
+              <input type="radio" name="genderFilter" value="Female" tabindex="0" class="hidden">
+              <label>Female</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
       <div class="extra-content">
         <span class="right floated">
           {{photoCount}} uploads
