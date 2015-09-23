@@ -1,0 +1,17 @@
+{
+  "public": {
+    "uploads": {
+        "folders": {
+          "root": "~/middlelogic/meteor/photoUploadExample/uploads/",
+          "photos": "photos",
+          "thumbs": "thumbs"
+        },
+        "options": {
+          "thumbs": {
+            "size": "96"
+          }
+        }
+    }
+  },
+  "private": {}
+}

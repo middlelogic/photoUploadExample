@@ -24,3 +24,5 @@ cfs:graphicsmagick
 semantic:ui
 flemay:less-autoprefixer
 semantic:ui-css
+cfs:ui
+richsilv:owl-carousel

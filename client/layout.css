@@ -1,0 +1,10 @@
+body {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background-color: #DADADA;
+}
+#owl-demo .item img{
+    display: block;
+    width: 100%;
+    height: auto;
+}

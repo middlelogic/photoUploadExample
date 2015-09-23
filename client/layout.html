@@ -1,0 +1,94 @@
+<head>
+  <title>Photo Upload Example</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div class="ui middle aligned center aligned grid">
+    {{> cardLayout}}
+  </div>
+</body>
+
+<template name="cardLayout">
+  <div class="ui card" style="margin-left: auto; margin-right: auto;">
+
+    <div class="ui content">
+      <div class="header">
+        <h2 class="ui icon header">
+          <i class="photo icon disabled"></i>
+          <div class="content">
+            Photo Upload Example
+            <div class="sub header">Photo Uploads and Manipulation</div>
+          </div>
+        </h2>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="ui form">
+        <div class="field">
+          <label>Gender</label>
+          <select class="ui dropdown" id="genderSelect">
+            <option value="">Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+        <div class="disabled field selectPhotoBtn">
+          <label>Photo</label>
+          <label for="selectPhoto" class="ui icon button">
+                <i class="photo icon big"></i>
+          </label>
+          <input type="file" id="selectPhoto" style="display: none;">
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="meta" style="padding-bottom: 6px;">
+        Upload Progress
+      </div>
+      {{> FS.UploadProgressBar semantic=true}}
+    </div>
+
+    <div class="content">
+      <div class="extra-content">
+        <span class="right floated">
+          {{photoCount}} uploads
+        </span>
+        <i class="photo icon"></i>
+        Photos
+      </div>
+      <br>
+      <div class="ui tiny circular images">
+        {{> photoGrid}}
+      </div>
+    </div>
+
+    <div class="content" id="carouselWrapper">
+      <div class="meta" style="padding-bottom: 6px;">
+        * Not a reactive plugin :(
+      </div>
+      {{> owlCarousel}}
+    </div>
+
+  </div>
+</template>
+
+<template name="photoGrid">
+  {{#each photos}}
+    <a href="{{this.url}}" target="_blank"><img src="{{this.url store='thumbs'  uploading='/images/uploading.gif' storing='/images/storing.gif'}}" alt="{{this.metadata.gender}}" class="ui image" /></a>
+  {{/each}}
+</template>
+
+<template name="owlCarousel">
+  <div id="owl-demo" class="owl-carousel owl-theme">
+    {{#if photos}}
+      {{#each photos}}
+        <div class="item"><img src="{{this.url store='photos' uploading='/images/uploading.gif' storing='/images/storing.gif'}}" alt="" /></div>
+      {{/each}}
+    {{/if}}
+  </div>
+</template>
